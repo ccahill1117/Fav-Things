@@ -1,0 +1,22 @@
+<h2>List of favorite things</h2>
+
+<% @list.each do |item| %>
+  <h4><a href="/items/<%= item.id %>"> Item Name : <%= item.name %> and Item Rank : <%= item.rank %></a></h4>
+<% end %>
+
+<h4>Add an item to the list:</h4>
+
+<%= @error %>
+
+
+<form action="/" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <div class="form-group">
+    <label for="rank">Rank</label>
+    <input id="rank" name="rank" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Go!</button>
+</form>
