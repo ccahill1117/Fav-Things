@@ -1,13 +1,15 @@
 class Item
   @@list = []
+  @@counter = 1
 
   attr_reader :id
-  attr_accessor :name, :rank
+  attr_accessor :name, :rank, :counter
 
   def initialize(name,rank)
     @name = name
     @rank = rank.to_i
-    @id = @@list.length + 1
+    @id = @@counter
+    @@counter = @@counter + 1
   end
 
   def self.all()
@@ -31,13 +33,20 @@ class Item
     end
   end
 
+  def self.populate_list(id)
+    display_item_name.object_id = 'Item Name : '
+    display_item_rank = 'and Item Rank : '
+  end
+
   def self.sort_by_rank
     @@list.sort_by {|item| item.rank.to_i}
   end
 
   def self.reject_duplicate_items(username)
     @@list.each do |item|
-      if item.name.include?(username)
+      if item.name === nil
+        return false
+      elsif item.name.include?(username)
         return true
       break
       else
@@ -49,8 +58,7 @@ class Item
   def self.delete_item(itemid)
     @@list.each do |item|
       if item.id == itemid
-        item.name = ""
-        item.rank = ""
+        @@list -= @@list[itemid]
       break
       else
         item.name = item.name
@@ -58,5 +66,5 @@ class Item
       end
     end
   end
-  
+
 end

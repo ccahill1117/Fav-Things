@@ -10,7 +10,7 @@ get ('/') do
 end
 
 post ('/') do
-  name = params["name"]
+  name = "Item name and rank: " + params["name"]
   rank = params["rank"]
   # @error = "error test"
   @list = Item.all()
@@ -24,6 +24,8 @@ post ('/') do
     @list = Item.sort_by_rank()
   else
     @error = ""
+    @display_item_name = 'Item Name : '
+    @display_item_rank = 'and Item Rank : '
     item = Item.new(name,rank)
     item.save()
     @list = Item.all()
@@ -34,6 +36,8 @@ end
 
 get('/items/:id') do
   @item = Item.find(params[:id])
+  @list = Item.all()
+  @list = Item.sort_by_rank()
   erb(:item)
 end
 
@@ -41,7 +45,7 @@ post('/items/:id') do
   name = params["name"]
   rank = params["rank"]
   @item = Item.find(params[:id])
-    if name == ""
+    if name == "Item name and rank: "
       @item.name = @item.name
     else
       @item.name = name
@@ -51,12 +55,12 @@ post('/items/:id') do
     else
       @item.rank = rank
     end
-  @list = Item.all()
-  @list = Item.sort_by_rank()
+
   erb(:item)
 end
 
-post('/items/delete/:id') do
+post('/items/<%= @item.id %>') do
+
   item_to_delete = Item.find(params[:id])
   @list = Item.delete_item(item_to_delete)
 

@@ -1,7 +1,9 @@
 thing1 = Item.new("bike",2)
 thing2 = Item.new("car",4)
 thing3 = Item.new("flute",1)
+thing4 = Item.new("sax",10)
 
 thing1.save
 thing2.save
 thing3.save
+thing4.save

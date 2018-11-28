@@ -13,7 +13,11 @@
   <button type="submit" class="btn">Submit</button>
 </form>
 
-<button type="button" action="/delete" name="delete_button">Delete this item from list</button>
+<form action="/items/<%= @item.id %>" method="post">
+ <input class='btn btn-primary' type='submit' value='Delete'>
+</form>
+
+
 
 <a href="/">
 <h2>back to home page</h2>
