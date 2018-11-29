@@ -44,7 +44,9 @@ class Item
 
   def self.reject_duplicate_items(username)
     @@list.each do |item|
-      if item.name.include?(username)
+      if item.name === nil
+        return false
+      elsif item.name.include?(username)
         return true
       end
     end
