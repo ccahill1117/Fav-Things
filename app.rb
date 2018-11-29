@@ -42,7 +42,7 @@ get('/items/:id') do
 end
 
 post('/items/:id') do
-  name = params["name"]
+  name = "Item name and rank: " + params["name"]
   rank = params["rank"]
   @item = Item.find(params[:id])
     if name == "Item name and rank: "
