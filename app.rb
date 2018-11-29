@@ -62,7 +62,7 @@ end
 post('/items/<%= @item.id %>') do
 
   item_to_delete = Item.find(params[:id])
-  @list = Item.delete_item(item_to_delete)
+  Item.delete_item(item_to_delete)
 
   erb(:item)
 end

@@ -58,7 +58,7 @@ class Item
   def self.delete_item(itemid)
     @@list.each do |item|
       if item.id == itemid
-        @@list -= @@list[itemid]
+        @@list.delete(@@list[itemid])
       break
       else
         item.name = item.name
