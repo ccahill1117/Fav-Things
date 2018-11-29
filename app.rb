@@ -18,7 +18,7 @@ post ('/') do
     @error = "you need to enter a name and a rank!"
     @list = Item.all()
     @list = Item.sort_by_rank()
-  elsif Item.reject_duplicate_items(name) === true
+  elsif Item.reject_duplicate_items(name) == true
     @error = "name is already used"
     @list = Item.all()
     @list = Item.sort_by_rank()
