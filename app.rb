@@ -10,7 +10,7 @@ get ('/') do
 end
 
 post ('/') do
-  name = "Item name and rank: " + params["name"]
+  name = params["name"]
   rank = params["rank"]
   # @error = "error test"
   @list = Item.all()
@@ -24,8 +24,6 @@ post ('/') do
     @list = Item.sort_by_rank()
   else
     @error = ""
-    @display_item_name = 'Item Name : '
-    @display_item_rank = 'and Item Rank : '
     item = Item.new(name,rank)
     item.save()
     @list = Item.all()
@@ -42,19 +40,11 @@ get('/items/:id') do
 end
 
 post('/items/:id') do
-  name = "Item name and rank: " + params["name"]
+  name = params["name"]
   rank = params["rank"]
   @item = Item.find(params[:id])
-    if name == "Item name and rank: "
-      @item.name = @item.name
-    else
-      @item.name = name
-    end
-    if rank == ""
-      @item.rank = @item.rank
-    else
-      @item.rank = rank
-    end
+    @item.name = name
+    @item.rank = rank
 
   erb(:item)
 end
